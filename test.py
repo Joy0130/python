@@ -6,3 +6,5 @@ print(a+b)
 c = 3
 print(c)
 print(a+b+c)
+d = 6
+print(d)
