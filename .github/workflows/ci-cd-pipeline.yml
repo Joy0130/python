@@ -40,8 +40,12 @@ jobs:
         run: chmod +x build-docker.sh
 
       - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .  # 指定構建上下文為當前目錄
+          file: ./Dockerfile  # 指定 Dockerfile 的路徑
+          push: true  # 設置為 true 以推送鏡像
         run: |
-          ./build-docker.sh
           docker push nas-tvm.futsu.com.tw:9999/python-test:latest
 
       - name: Run container from Docker image
