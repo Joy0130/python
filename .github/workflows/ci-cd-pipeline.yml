@@ -10,9 +10,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-
       - name: Set repository name to lowercase
         run: echo "REPO_NAME=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
+      - name: Check REPO_NAME
+        run: echo "REPO_NAME is set to: ${{ env.REPO_NAME }}"
 
       - name: Checkout code
         uses: actions/checkout@v4
