@@ -7,10 +7,10 @@
 # COPY . /app
 # # 啟動 Flask 應用
 # CMD ["python", "app.py"]
-FROM python:3.12.3-alpine
+FROM python:3.12-slim
 
 # 安装必要的依赖工具和库
-RUN apk add --no-cache gcc musl-dev libffi-dev
+# RUN apk add --no-cache gcc musl-dev libffi-dev
 
 WORKDIR /app
 COPY requirements.txt ./
