@@ -35,6 +35,9 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}  # 使用觸發工作流的用戶名
           password: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub 提供的 token
+          
+      - name: Make build-docker.sh executable
+        run: chmod +x build-docker.sh
 
       - name: Build and push Docker image
         run: |
