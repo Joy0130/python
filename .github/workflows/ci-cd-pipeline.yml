@@ -11,16 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.12'  # 您可以根據需要選擇不同的 Python 版本
-
+      # 安裝依賴項
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt  # 安裝依賴項
+          pip install -r requirements.txt  
 
   build-and-push:
     name: Build and Push Docker Image
@@ -55,7 +55,7 @@ jobs:
           context: .  # 指定構建上下文為當前目錄
           file: ./Dockerfile  # 指定 Dockerfile 的路徑
           push: true  # 設置為 true 以推送鏡像
-          tags: ghcr.io/joy0130/python:latest # 使用 GitHub 倉庫作為標籤，例如 ghcr.io/<owner>/<repo>:latest
+          tags: ghcr.io/${{ github.repository }}/python:latest # 使用 GitHub 倉庫作為標籤，例如 ghcr.io/<owner>/<repo>:latest
 
       # - name: Run container from Docker image
       #   run: |
