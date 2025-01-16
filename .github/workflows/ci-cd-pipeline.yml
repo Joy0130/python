@@ -10,12 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Set repository name to lowercase
-        run: echo "REPO_NAME=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-
-      - name: Check REPO_NAME
-        run: echo "REPO_NAME is set to: ${{ env.REPO_NAME }}"
-
       - name: Checkout code
         uses: actions/checkout@v4
       
@@ -61,7 +55,7 @@ jobs:
           context: .  # 指定構建上下文為當前目錄
           file: ./Dockerfile  # 指定 Dockerfile 的路徑
           push: true  # 設置為 true 以推送鏡像
-          tags: ghcr.io/${{ env.REPO_NAME }}/python:latest # 使用 GitHub 倉庫作為標籤，例如 ghcr.io/<owner>/<repo>:latest
+          tags: ghcr.io/joy0130/python:latest # 使用 GitHub 倉庫作為標籤，例如 ghcr.io/<owner>/<repo>:latest
 
       # - name: Run container from Docker image
       #   run: |
