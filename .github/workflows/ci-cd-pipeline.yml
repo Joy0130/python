@@ -42,11 +42,11 @@ jobs:
           context: .  # 指定構建上下文為當前目錄
           file: ./Dockerfile  # 指定 Dockerfile 的路徑
           push: true  # 設置為 true 以推送鏡像
-          tags: ghcr.io/joy0130/python:latest # 使用 GitHub 倉庫作為標籤，例如 ghcr.io/<owner>/<repo>:latest
+          tags: nas-tvm.futsu.com.tw:9999/python-test:latest # 使用 GitHub 倉庫作為標籤，例如 ghcr.io/<owner>/<repo>:latest
 
       - name: Run container from Docker image
         run: |
-          docker run -d -p 5000:5002 --name python_container ghcr.io/joy0130/python:latest  # 使用拉取的鏡像創建並啟動容器
+          docker run -d -p 5002:5002 --name python-test-container nas-tvm.futsu.com.tw:9999/python-test:latest  # 使用拉取的鏡像創建並啟動容器
           docker ps -a  # 顯示所有容器（確保容器啟動成功）
 
       - name: Perform CodeQL Analysis
