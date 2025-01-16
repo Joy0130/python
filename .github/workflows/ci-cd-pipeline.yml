@@ -42,7 +42,7 @@ jobs:
           context: .  # 指定構建上下文為當前目錄
           file: ./Dockerfile  # 指定 Dockerfile 的路徑
           push: true  # 設置為 true 以推送鏡像
-          tags: ghcr.io/${{ github.repository }}:latest  # 使用 GitHub 倉庫作為標籤，例如 ghcr.io/<owner>/<repo>:latest
+          tags: ghcr.io/Joy0130/python:latest # 使用 GitHub 倉庫作為標籤，例如 ghcr.io/<owner>/<repo>:latest
           
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/init@v2
