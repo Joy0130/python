@@ -35,7 +35,7 @@ def guess_the_number():
             message = "請輸入有效的數字。"
 
     return render_template('index.html', message=message, attempts=attempts)
-print("success11")
+print("success12")
 # 啟動伺服器
 if __name__ == "__main__":
     app.run(host = '0.0.0.0',debug=True,port = 5002)
