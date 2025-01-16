@@ -42,7 +42,7 @@ jobs:
           context: .
           file: ./Dockerfile  # 指定 Dockerfile 的路徑
           push: true  # 設置為 true 以推送映像
-          tags: ghcr.io/github-joy0130/python/python2:latest 
+          tags: ghcr.io/Github-joy0130/python/python2:latest 
           #tags: ghcr.io/nas-tvm-futsu-com-tw/pythontest:latest # 設定映像標籤
 
       - name: Perform CodeQL Analysis
