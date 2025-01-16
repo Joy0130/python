@@ -36,31 +36,31 @@ jobs:
           username: ${{ github.actor }}  # 使用觸發工作流的用戶名
           password: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub 提供的 token
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v2
-        with:
-          context: .  # 指定构建上下文为当前目录
-          file: ./Dockerfile  # 指定 Dockerfile 的路径
-          push: true  # 设置为 true 以推送镜像
-          tags: nas-tvm.futsu.com.tw:9999/python-test:latest  # 指定镜像标签
-
-      - name: Run container from Docker image
-        run: |
-          docker run -d -p 5002:5002 --name python-test-container nas-tvm.futsu.com.tw:9999/python-test:latest
-          docker ps -a
-        
       # - name: Build and push Docker image
       #   uses: docker/build-push-action@v2
       #   with:
-      #     context: .  # 指定構建上下文為當前目錄
-      #     file: ./Dockerfile  # 指定 Dockerfile 的路徑
-      #     push: true  # 設置為 true 以推送鏡像
-      #     tags: ghcr.io/joy0130/python:latest # 使用 GitHub 倉庫作為標籤，例如 ghcr.io/<owner>/<repo>:latest
+      #     context: .  # 指定构建上下文为当前目录
+      #     file: ./Dockerfile  # 指定 Dockerfile 的路径
+      #     push: true  # 设置为 true 以推送镜像
+      #     tags: nas-tvm.futsu.com.tw:9999/python-test:latest  # 指定镜像标签
 
       # - name: Run container from Docker image
       #   run: |
-      #     docker run -d -p 5000:5002 --name python_container ghcr.io/joy0130/python:latest  # 使用拉取的鏡像創建並啟動容器
-      #     docker ps -a  # 顯示所有容器（確保容器啟動成功）
+      #     docker run -d -p 5002:5002 --name python-test-container nas-tvm.futsu.com.tw:9999/python-test:latest
+      #     docker ps -a
+        
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .  # 指定構建上下文為當前目錄
+          file: ./Dockerfile  # 指定 Dockerfile 的路徑
+          push: true  # 設置為 true 以推送鏡像
+          tags: ghcr.io/joy0130/python:latest # 使用 GitHub 倉庫作為標籤，例如 ghcr.io/<owner>/<repo>:latest
+
+      - name: Run container from Docker image
+        run: |
+          docker run -d -p 5000:5002 --name python_container ghcr.io/joy0130/python:latest  # 使用拉取的鏡像創建並啟動容器
+          docker ps -a  # 顯示所有容器（確保容器啟動成功）
     
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/init@v2
