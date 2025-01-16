@@ -35,18 +35,14 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}  # 使用觸發工作流的用戶名
           password: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub 提供的 token
-          
-      - name: Make build-docker.sh executable
-        run: chmod +x build-docker.sh
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
-          context: .  # 指定構建上下文為當前目錄
-          file: ./Dockerfile  # 指定 Dockerfile 的路徑
-          push: true  # 設置為 true 以推送鏡像
-        run: |
-          docker push nas-tvm.futsu.com.tw:9999/python-test:latest
+          context: .  # 指定构建上下文为当前目录
+          file: ./Dockerfile  # 指定 Dockerfile 的路径
+          push: true  # 设置为 true 以推送镜像
+          tags: nas-tvm.futsu.com.tw:9999/python-test:latest  # 指定镜像标签
 
       - name: Run container from Docker image
         run: |
