@@ -39,12 +39,11 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: .  # 指定構建上下文為當前目錄
           file: ./Dockerfile  # 指定 Dockerfile 的路徑
-          push: true  # 設置為 true 以推送映像
-          tags: ghcr.io/github-joy0130/python:latest
-          #tags: ghcr.io/nas-tvm-futsu-com-tw/pythontest:latest # 設定映像標籤
-
+          push: true  # 設置為 true 以推送鏡像
+          tags: ghcr.io/${{ github.repository }}:latest  # 使用 GitHub 倉庫作為標籤，例如 ghcr.io/<owner>/<repo>:latest
+          
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/init@v2
         with:
