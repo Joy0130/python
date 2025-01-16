@@ -36,6 +36,11 @@ def guess_the_number():
 
     return render_template('index.html', message=message, attempts=attempts)
 
+# 全局異常處理
+@app.errorhandler(Exception)
+def handle_exception(e):
+    return f"發生錯誤: {str(e)}", 500
+
 # 啟動伺服器
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True, port=5002)
