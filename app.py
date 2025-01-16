@@ -13,8 +13,6 @@ def reset_game():
     attempts = 0
 
 @app.route('/', methods=['GET', 'POST'])
-def main():
-    raise Exception()
 
 def guess_the_number():
     global secret_number, attempts
