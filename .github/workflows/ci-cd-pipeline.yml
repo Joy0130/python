@@ -23,11 +23,11 @@ jobs:
           pip install -r requirements.txt  
 
   build-and-push:
-    name: Build and Push Docker Image
+    needs: build  # 確保 build 完成後執行
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v2
@@ -48,14 +48,20 @@ jobs:
       #   run: |
       #     docker run -d -p 5002:5002 --name python-test-container nas-tvm.futsu.com.tw:9999/python-test:latest
       #     docker ps -a
-        
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
           context: .  # 指定構建上下文為當前目錄
-          file: ./Dockerfile  # 指定 Dockerfile 的路徑
+          file: ./Dockerfile # 指定 Dockerfile 的路徑
           push: true  # 設置為 true 以推送鏡像
-          tags: ghcr.io/joy0130/python:latest # 使用 GitHub 倉庫作為標籤，例如 ghcr.io/<owner>/<repo>:latest
+          tags: ghcr.io/joy0130/python:latest  # 使用 GitHub 倉庫作為標籤，例如 ghcr.io/<owner>/<repo>:latest  
+      # - name: Build and push Docker image
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     context: .  # 指定構建上下文為當前目錄
+      #     file: ./Dockerfile  # 指定 Dockerfile 的路徑
+      #     push: true  # 設置為 true 以推送鏡像
+      #     tags: ghcr.io/joy0130/python:latest # 使用 GitHub 倉庫作為標籤，例如 ghcr.io/<owner>/<repo>:latest
 
       # - name: Run container from Docker image
       #   run: |
